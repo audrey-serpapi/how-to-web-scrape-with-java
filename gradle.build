@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example.scraping'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // --- HTTP + Parsing (static pages) ---
+    implementation 'org.jsoup:jsoup:1.17.2'
+
+    // --- JSON parsing / data processing ---
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation 'com.opencsv:opencsv:5.9'
+
+    // --- Web Drivers (dynamic pages) ---
+    implementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
+    implementation 'com.microsoft.playwright:playwright:1.44.0'
+    implementation 'net.sourceforge.htmlunit:htmlunit:2.70.0'
+
+    // --- Automation / crawling frameworks ---
+    implementation 'edu.uci.ics:crawler4j:4.4.0'
+
+    // --- Logging (crawler4j and Selenium are noisy without this) ---
+    implementation 'org.slf4j:slf4j-simple:2.0.13'
+
+    // --- Testing ---
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// Each example has its own runnable main class.
+// Run one with: ./gradlew run -PmainClass=com.example.scraping.JsoupStaticScraper
+application {
+    mainClass = project.hasProperty('mainClass') ? project.mainClass : 'com.example.scraping.JsoupStaticScraper'
+}

@@ -1,0 +1,2 @@
+rootProject.name = 'how-to-scrape-with-java'
+include("app")
