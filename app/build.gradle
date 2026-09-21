@@ -11,6 +11,9 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://download.oracle.com/maven'
+    }
 }
 
 java {
@@ -29,6 +32,10 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.18.1'
     implementation 'com.microsoft.playwright:playwright:1.49.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.27.0'
+    implementation 'edu.uci.ics:crawler4j:4.4.0'
+    implementation 'com.opencsv:opencsv:5.9'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 application {
@@ -37,6 +44,13 @@ application {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// Apply this to every JavaExec task (the default 'run' plus all the
+// custom run* tasks below) — each is its own JavaExec and doesn't
+// inherit jvmArgs from the others automatically.
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += ['--add-exports=java.management/sun.management=ALL-UNNAMED']
 }
 
 // Custom tasks pointing to the exact 'org.example.scraping' packages
@@ -56,4 +70,34 @@ tasks.register('runSelenium', JavaExec) {
     dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.SeleniumDynamicScraper'
+}
+
+tasks.register('runCrawler4j', JavaExec) {
+    dependsOn tasks.compileJava
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scraping.Crawler4jExample'
+}
+
+tasks.register('runThreadSleepLoop', JavaExec) {
+    dependsOn tasks.compileJava
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scraping.ThreadSleepLoopExample'
+}
+
+tasks.register('runGsonParsing', JavaExec) {
+    dependsOn tasks.compileJava
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scraping.GsonParsingExample'
+}
+
+tasks.register('runOpenCsvExport', JavaExec) {
+    dependsOn tasks.compileJava
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scraping.OpenCsvExportExample'
+}
+
+tasks.register('runJacksonExport', JavaExec) {
+    dependsOn tasks.compileJava
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.example.scraping.JacksonExportExample'
 }
