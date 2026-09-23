@@ -1,11 +1,13 @@
 # Java Web Scraping Examples
 
-A collection of small, self-contained Java examples showing different approaches to web scraping. Explores different methods from simple static HTML parsing to full headless-browser automation, crawling, and exporting scraped data to CSV/JSON. All examples scrape the [Hacker News](https://news.ycombinator.com) front page as a common, consistent target so the techniques are easy to compare side by side.
+A collection of small, self-contained Java examples showing different approaches to web scraping. 
+Explores different methods from simple static HTML parsing to full headless-browser automation, crawling, and exporting scraped data to CSV/JSON. 
+All examples scrape the [Hacker News](https://news.ycombinator.com) front page as a common, consistent target so the techniques are easy to compare side by side.
 
 ## Prerequisites
 
 - Java 26 (configured via Gradle toolchain)
-- Gradle (wrapper included — no local install needed)
+- Gradle (wrapper included no local install needed)
 - Internet access (examples make live requests to Hacker News)
 
 ## Setup
@@ -16,11 +18,12 @@ Dependencies are managed in `app/build.gradle` and resolve automatically on firs
 ./gradlew build
 ```
 
-> **Note:** `edu.uci.ics:crawler4j` pulls in `com.sleepycat:je`, which requires Oracle's Maven repository (`https://download.oracle.com/maven`) in addition to Maven Central — this is already configured in `build.gradle`.
+> **Note:** `edu.uci.ics:crawler4j` pulls in `com.sleepycat:je`, which requires Oracle's Maven repository (`https://download.oracle.com/maven`) in addition to Maven Central. This is already configured in `build.gradle`.
 
 ## Examples
 
-Each file is a standalone `main()` — run any of them directly via its dedicated Gradle task:
+Each file is a standalone `main()` 
+Run any of them directly via its dedicated Gradle task:
 
 | File | Run command | What it demonstrates |
 |---|---|---|
