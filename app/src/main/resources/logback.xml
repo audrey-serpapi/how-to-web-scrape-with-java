@@ -1,0 +1,20 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Only show WARN and above by default -->
+    <root level="WARN">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Keep crawler4j's own high-level progress messages (crawler started, etc.) -->
+    <logger name="edu.uci.ics.crawler4j" level="INFO" />
+
+    <!-- Silence Apache HttpClient's verbose wire/header dumps entirely -->
+    <logger name="org.apache.http" level="WARN" />
+
+    <logger name="edu.uci.ics.crawler4j" level="WARN" />
+</configuration>

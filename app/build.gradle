@@ -12,7 +12,7 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-        url 'https://download.oracle.com/maven'
+        url = 'https://download.oracle.com/maven'
     }
 }
 
@@ -50,54 +50,46 @@ tasks.named('test') {
 // custom run* tasks below) — each is its own JavaExec and doesn't
 // inherit jvmArgs from the others automatically.
 tasks.withType(JavaExec).configureEach {
-    jvmArgs += ['--add-exports=java.management/sun.management=ALL-UNNAMED']
+    jvmArgs('--add-exports=java.management/sun.management=ALL-UNNAMED')
 }
 
 // Custom tasks pointing to the exact 'org.example.scraping' packages
 tasks.register('runJsoup', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.JsoupStaticScraper'
 }
 
 tasks.register('runPlaywright', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.PlaywrightDynamicScraper'
 }
 
 tasks.register('runSelenium', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.SeleniumDynamicScraper'
 }
 
 tasks.register('runCrawler4j', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.Crawler4jExample'
 }
 
 tasks.register('runThreadSleepLoop', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.ThreadSleepLoopExample'
 }
 
 tasks.register('runGsonParsing', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.GsonParsingExample'
 }
 
 tasks.register('runOpenCsvExport', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.OpenCsvExportExample'
 }
 
 tasks.register('runJacksonExport', JavaExec) {
-    dependsOn tasks.compileJava
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'org.example.scraping.JacksonExportExample'
 }
